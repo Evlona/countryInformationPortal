@@ -19,7 +19,11 @@ app.use(cors());
 if (mode === 'development') {
     app.use(morgan('dev'));
 }
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use(
+    `${BASE_URL}${URLS.docs}`,
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerDocs),
+);
 
 app.use(`${BASE_URL}${URLS.countries}`, countriesRouter);
 
