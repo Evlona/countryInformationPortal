@@ -10,7 +10,7 @@ export const getCountryByName = async (name: string) => {
 
 export const updateCountry = async (
     name: string,
-    data: { population?: number; capital?: string },
+    data: { population?: number; capital?: [string] },
 ) => {
     return await Countries.findOneAndUpdate(
         { name },

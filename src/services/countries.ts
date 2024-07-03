@@ -12,7 +12,7 @@ export const getCountryByName = async (name: string) => {
 
 export const updateCountry = async (
     name: string,
-    data: { population?: number; capital?: string },
+    data: { population?: number; capital?: [string] },
 ) => {
     const updatedCountry = await countriesDal.updateCountry(name, data);
     return updatedCountry;
