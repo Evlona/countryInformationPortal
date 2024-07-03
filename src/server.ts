@@ -1,10 +1,10 @@
 import express from 'express';
 import { config } from './config/parseEnv';
-import { connectDB } from './config/db';
+import { connectDB } from './DAL/mongooseConnection';
 import morgan from 'morgan';
 import { errorHandler } from './middleware/error';
 import { countriesRouter } from './routes/countries';
-import { BASE_URL, URLS } from './consts/consts';
+import { BASE_URL, URLS } from './consts';
 import swaggerJsDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import cors from 'cors';

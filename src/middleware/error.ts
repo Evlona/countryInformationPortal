@@ -4,19 +4,21 @@ import { ErrorResponse } from '../utils/errorResponse';
 
 export const errorHandler = (
     err: Error,
-    req: Request,
+    _req: Request,
     res: Response,
-    next: NextFunction,
+    _next: NextFunction,
 ) => {
     const error: ErrorResponse = {
-        ...err,
         statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+        message: err.message || 'Server Error',
+        name: err.name,
+        stack: err.stack,
     };
 
-    console.error(err.stack);
+    console.error(error.stack);
 
     return res.status(error.statusCode).json({
         success: false,
-        error: error.message || 'Server Error',
+        error: error.message,
     });
 };

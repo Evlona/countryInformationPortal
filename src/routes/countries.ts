@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import {
     getCountries,
-    getCountryByName,
+    getCountryById,
     updateCountry,
 } from '../controllers/countries';
 
@@ -23,13 +23,13 @@ countriesRouter.route('/').get(getCountries);
 
 /**
  * @swagger
- * /countries/{n1}:
+ * /countries/{i1}:
  *  get:
- *      summary: return country by name.
+ *      summary: return country by id.
  *      description: get country.
  *      parameters:
  *       - in: path
- *         name: name
+ *         name: id
  *         schema:
  *           type: string
  *         required: true
@@ -41,13 +41,13 @@ countriesRouter.route('/').get(getCountries);
  *          '500':
  *              description: Internal server error
  *
- * /countries/{n2}:
+ * /countries/{i2}:
  *  put:
- *      summary: update country by name.
+ *      summary: update country by id.
  *      description: update country.
  *      parameters:
  *       - in: path
- *         name: name
+ *         name: id
  *         schema:
  *           type: string
  *         required: true
@@ -72,6 +72,6 @@ countriesRouter.route('/').get(getCountries);
  *          '500':
  *              description: Internal server error
  */
-countriesRouter.route('/:name').get(getCountryByName).put(updateCountry);
+countriesRouter.route('/:id').get(getCountryById).put(updateCountry);
 
 export { countriesRouter };

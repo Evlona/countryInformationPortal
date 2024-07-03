@@ -1,22 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
 import { asyncHandler } from '../middleware/async';
-import * as countriesService from '../services/countries';
 import { StatusCodes } from 'http-status-codes';
-import { ErrorResponse } from '../utils/errorResponse';
+import countriesService from '../services/countries';
 
-export const getCountryByName = asyncHandler(
-    async (req: Request, res: Response, next: NextFunction) => {
-        const { name } = req.params;
-        const country = await countriesService.getCountryByName(name);
-
-        if (!country) {
-            return next(
-                new ErrorResponse(
-                    `Country not found with name of ${name}`,
-                    StatusCodes.NOT_FOUND,
-                ),
-            );
-        }
+export const getCountryById = asyncHandler(
+    async (req: Request, res: Response, _next: NextFunction) => {
+        const { id } = req.params;
+        const country = await countriesService.getCountryById(id);
 
         res.status(StatusCodes.OK).json({
             success: true,
@@ -37,23 +27,14 @@ export const getCountries = asyncHandler(
 );
 
 export const updateCountry = asyncHandler(
-    async (req: Request, res: Response, next: NextFunction) => {
-        const { name } = req.params;
+    async (req: Request, res: Response, _next: NextFunction) => {
+        const { id } = req.params;
         const { population, capital } = req.body;
 
-        const updatedCountry = await countriesService.updateCountry(name, {
+        const updatedCountry = await countriesService.updateCountry(id, {
             population,
             capital,
         });
-
-        if (!updatedCountry) {
-            return next(
-                new ErrorResponse(
-                    `Country not found with name of ${name}`,
-                    StatusCodes.NOT_FOUND,
-                ),
-            );
-        }
 
         res.status(StatusCodes.OK).json({
             success: true,

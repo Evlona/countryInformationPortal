@@ -1,19 +1,41 @@
+import { StatusCodes } from 'http-status-codes';
 import * as countriesDal from '../DAL/countries';
+import { UpdateCountryPayload } from '../consts/interfaces/countries';
+import { ErrorResponse } from '../utils/errorResponse';
 
-export const getCountries = async () => {
+const getCountries = async () => {
     const countries = await countriesDal.getCountries();
     return countries;
 };
 
-export const getCountryByName = async (name: string) => {
-    const country = await countriesDal.getCountryByName(name);
+const getCountryById = async (id: string) => {
+    const country = await countriesDal.getCountryById(id);
+
+    if (!country) {
+        throw new ErrorResponse(
+            `Country not found with id of ${id}`,
+            StatusCodes.NOT_FOUND,
+        );
+    }
+
     return country;
 };
 
-export const updateCountry = async (
-    name: string,
-    data: { population?: number; capital?: [string] },
-) => {
-    const updatedCountry = await countriesDal.updateCountry(name, data);
+const updateCountry = async (id: string, data: UpdateCountryPayload) => {
+    const updatedCountry = await countriesDal.updateCountry(id, data);
+
+    if (!updatedCountry) {
+        throw new ErrorResponse(
+            `Country not found with id of ${id}`,
+            StatusCodes.NOT_FOUND,
+        );
+    }
+
     return updatedCountry;
+};
+
+export default {
+    getCountries,
+    getCountryById,
+    updateCountry,
 };
