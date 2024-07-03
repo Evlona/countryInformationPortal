@@ -9,10 +9,10 @@ const countriesSchema = new Schema({
         maxLength: [50, 'name maximum length exceed'],
     },
     capital: {
-        type: String,
+        type: [String],
         required: [true, 'capital is required'],
         trim: true,
-        maxLength: [50, 'capital maximum length exceed'],
+        maxLength: [500, 'capital maximum length exceed'],
     },
     region: {
         type: String,
@@ -31,26 +31,39 @@ const countriesSchema = new Schema({
         min: [1, 'population must bigger or equal to 1'],
         required: [true, 'population is required'],
     },
-    timezone: {
-        type: String,
-        required: [true, 'timezone is required'],
-        trim: true,
-        maxLength: [50, 'timezone maximum length exceed'],
-    },
-    continent: {
+    timezones: {
         type: [String],
-        required: [true, 'continent is required'],
-        maxLength: [100, 'continent maximum length exceed'],
-    },
-    flagImageUrl: {
-        type: [String],
-        required: [true, 'flagImageUrl is required'],
+        required: [true, 'timezones is required'],
         trim: true,
-        match: [
-            /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
-            'Please use a valid URL with HTTP or HTTPS',
-        ],
-        maxLength: [500, 'flagImageUrl maximum length exceed'],
+        maxLength: [500, 'timezones maximum length exceed'],
+    },
+    continents: {
+        type: [String],
+        required: [true, 'continents is required'],
+        maxLength: [100, 'continents maximum length exceed'],
+    },
+    flags: {
+        type: Object,
+        png: {
+            type: String,
+            required: [true, 'png is required'],
+            trim: true,
+            match: [
+                /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
+                'Please use a valid URL with HTTP or HTTPS',
+            ],
+            maxLength: [500, 'png maximum length exceed'],
+        },
+        svg: {
+            type: String,
+            required: [true, 'svg is required'],
+            trim: true,
+            match: [
+                /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
+                'Please use a valid URL with HTTP or HTTPS',
+            ],
+            maxLength: [500, 'svg maximum length exceed'],
+        },
     },
 });
 
