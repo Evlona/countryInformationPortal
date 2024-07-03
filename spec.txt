@@ -1,0 +1,66 @@
+Assignment: Country Information Portal
+Objective:
+Develop a web application that utilizes React for the client-side and Node.js (Express or Nest.js) for the server-side to manage and display information about countries. The application will fetch JSON data from the REST Countries API, allow the developer to manually upload this data into a chosen database (MongoDB, SQL, or PostgreSQL), and enable users to view and edit this data through a user-friendly interface.
+Project Overview:
+The application aims to present detailed information about countries, leveraging data fetched from the REST Countries API. It consists of two main components:
+Countries Overview Page: A page displaying a grid of countries, including details such as country name, capital, region, sub-region, and population. Each row will feature a "Details" button leading to a detailed view of the selected country.
+Country Details Page: A detailed view of a selected country, showing the country's flag, and allowing the editing of certain information like the population and capital.
+
+Tools and Technologies:
+Client-side: React
+Server-side: Node.js with Express or Nest.js
+ORM: Mongoose for MongoDB, Sequelize for SQL/PostgreSQL
+Database: MongoDB, SQL, or PostgreSQL
+External API: REST Countries (Data source URL: https://restcountries.com/v3.1/all)
+Tasks:
+
+1. Setup and Configuration:
+Initialize the React project for the client-side application:
+Use Create React App or a similar tool to bootstrap your React application.
+Set up a Node.js project for the server-side application:
+For Express:
+Initialize a new Node.js project and install necessary packages like Express, Mongoose, and Sequelize.
+
+For Nest.js:
+Create a new Nest.js project using the Nest CLI and install necessary packages like Mongoose or Sequelize.
+Configure the chosen database and integrate it with your Node.js application:
+Set up a MongoDB, SQL, or PostgreSQL database either locally or using a cloud service like MongoDB Atlas, MySQL, or PostgreSQL.
+Create appropriate schemas and models using Mongoose for MongoDB or Sequelize for SQL/PostgreSQL.
+
+2. Data Acquisition and Database Preparation:
+Fetch country data from the REST Countries API using the provided URL:
+Use a tool like Postman to fetch data and examine its structure.
+Define your database schema:
+For MongoDB: Define documents within a collection named "Countries". Each document will contain fields for country name, capital, region, sub-region, population, timezone, continent, and flag URL.
+For SQL/PostgreSQL: Define tables with columns for country name, capital, region, sub-region, population, timezone, continent, and flag URL.
+Manually upload the JSON data into the chosen database:
+Use tools like MongoDB Compass, MySQL Workbench, or pgAdmin to import the data, or write a script within your Node.js application to read the JSON and insert it into the database.
+
+3. Client-side Development (React):
+Implement the Countries Overview Page:
+Create a component that fetches and displays a list of countries. Use a grid or table to display country information (name, capital, region, sub-region, and population).
+Add a "Details" button for each country that navigates to the Country Details Page.
+Create the Country Details Page:
+Create a component that fetches and displays detailed information about a selected country, including the country's flag and editable fields for population and capital.
+Implement a save functionality to persist changes made to the population and capital.
+
+4. Server-side Development (Express or Nest.js):
+Develop a Web API to serve country data to the client-side application:
+For Express:
+Create an Express server with endpoints to interact with the chosen database.
+For Nest.js:
+Create a Nest.js application with modules, controllers, and services to interact with the chosen database.
+Implement an endpoint to retrieve the list of countries for the overview page:
+Create a GET endpoint that queries the database to retrieve country records.
+Implement an endpoint to fetch detailed information for a selected country:
+Create a GET endpoint that retrieves a single record based on a unique identifier like the country name.
+Provide endpoints to support editing operations on the population and capital:
+Create PUT endpoints to update specific fields in a record within the database.
+
+5. Project Submission:
+Create a public GitHub repository:
+Initialize a Git repository in your project folder.
+Push your project to a new repository on GitHub.
+Submit the link to your GitHub repository:
+Ensure the repository is public so that it can be accessed and reviewed.
+

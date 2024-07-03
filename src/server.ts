@@ -2,6 +2,7 @@ import express from 'express';
 import { config } from './config/parseEnv';
 import { connectDB } from './config/db';
 import morgan from 'morgan';
+import { errorHandler } from './middleware/error';
 
 const { port, host, mode } = config.serverConfig;
 const app = express();
@@ -12,6 +13,7 @@ if (mode === 'development') {
     app.use(morgan('dev'));
 }
 
+app.use(errorHandler);
 const server = app.listen(port, async () => {
     await connectDB();
     console.info(
