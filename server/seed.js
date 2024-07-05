@@ -37,7 +37,7 @@ const seedDB = async (data, client) => {
     try {
         if (!process.env.MONGODB_URI) {
             throw Error(
-                'Most load env or provide MONGODB_URI file example: node --env-file=.env seed.js ',
+                'Must load env or provide MONGODB_URI file example: node --env-file=.env seed.js ',
             );
         }
         const json = await getJson();
