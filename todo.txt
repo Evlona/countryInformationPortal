@@ -2,9 +2,6 @@ add route validation
 split server.ts for better modularity
 pagination for big data routes
 
-build homepage display countries
-
-add button to view more details for each country
 add button on detailed country to edit population and capital fields
 
 add error handler 
