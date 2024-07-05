@@ -52,7 +52,7 @@ export const columns: ColumnDef<CountryInfo>[] = [
   {
     id: "action",
     cell: ({ row }) => {
-      const id = row.original._id;
+      const id = row.original.id;
       return <Link href={`country/${id}`}>See more</Link>;
     },
   },

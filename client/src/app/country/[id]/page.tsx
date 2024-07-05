@@ -20,5 +20,5 @@ type CountryProps = {
 export default async function Country({ params }: CountryProps) {
   const data = await getCardData(params.id);
 
-  return <CountryDetailsCard data={{ ...data, _id: params.id }} />;
+  return <CountryDetailsCard data={{ ...data, id: params.id }} />;
 }

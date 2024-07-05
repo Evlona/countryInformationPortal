@@ -1,8 +1,0 @@
-add route validation 
-split server.ts for better modularity
-pagination for big data routes
-
-add button on detailed country to edit population and capital fields
-
-add error handler 
-add 404 page

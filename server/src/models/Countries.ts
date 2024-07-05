@@ -67,5 +67,12 @@ const countriesSchema = new Schema({
     },
 });
 
+countriesSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+countriesSchema.set('toJSON', {
+    virtuals: true,
+});
+
 const Countries = model('Countries', countriesSchema);
 export { Countries };

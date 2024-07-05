@@ -24,7 +24,7 @@ const CountryDetailsCard: FC<CountryDetailsCardProps> = ({
     capital: string[];
     population: number;
   }) => {
-    updateCountry(values, data._id).then(() => isOpen(!open));
+    updateCountry(values, data.id).then(() => isOpen(!open));
   };
 
   return (
