@@ -6,7 +6,7 @@ interface ImageProps {
   className?: string;
 }
 
-export default function Image({ imagePng, alt, className = "" }: ImageProps) {
+export function Image({ imagePng, alt, className = "" }: ImageProps) {
   return (
     <img
       className={cn(

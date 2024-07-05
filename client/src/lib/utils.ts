@@ -1,4 +1,5 @@
 import { type ClassValue, clsx } from "clsx";
+import { revalidatePath } from "next/cache";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -47,6 +48,20 @@ export async function httpRequest<T>(
   input: URL | RequestInfo,
   opt: RequestInit = {}
 ): Promise<T> {
-  const response = await fetch(input, opt);
+  const response = await fetch(input, {
+    ...opt,
+    cache: "no-store",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+  if (!response.ok) {
+    throw Error(`Api response ${response.status}`);
+  }
+  revalidatePath("page");
   return response.json().then<T>((j) => j.data);
 }
+
+export const transformStringInputToArrayOfWords = (value: string) =>
+  value.split(/;|,| |\n/);

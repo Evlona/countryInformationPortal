@@ -9,9 +9,9 @@ export interface TextProps {
 
 export const Text: FC<TextProps> = ({ children, className, label }) => {
   return (
-    <div className={cn("mt-2 flex gap-6 ", className)}>
-      {label ?? <p className="text-gray-500 font-semibold">{label}</p>}
-      <p className="text-gray-700">{children}</p>
+    <div className={cn("mt-2 w-96 flex ", className)}>
+      <p className="text-gray-500 min-w-36 bg-white  font-semibold">{label}</p>
+      <p className="text-gray-700 min-w-36  ">{children}</p>
     </div>
   );
 };

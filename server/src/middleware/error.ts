@@ -8,14 +8,16 @@ export const errorHandler = (
     res: Response,
     _next: NextFunction,
 ) => {
-    const error: ErrorResponse = {
-        statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-        message: err.message || 'Server Error',
-        name: err.name,
-        stack: err.stack,
-    };
+    let error = err as ErrorResponse;
 
-    console.error(error.stack);
+    if (!(err instanceof ErrorResponse)) {
+        error = {
+            statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+            message: err.message || 'Server Error',
+            name: err.name,
+            stack: err.stack,
+        };
+    }
 
     return res.status(error.statusCode).json({
         success: false,

@@ -4,6 +4,11 @@ import {
     getCountryById,
     updateCountry,
 } from '../controllers/countries';
+import { validate } from '../middleware/validation';
+import {
+    validatePopulationAndCapital,
+    validateId,
+} from '../middleware/validation/countries';
 
 const countriesRouter = Router();
 
@@ -67,11 +72,19 @@ countriesRouter.route('/').get(getCountries);
  *      responses:
  *          '200':
  *              description: A successful response
+ *          '400':
+ *              description: Invalid request
  *          '404':
- *              description: not found
+ *              description: Not found
  *          '500':
  *              description: Internal server error
  */
-countriesRouter.route('/:id').get(getCountryById).put(updateCountry);
+countriesRouter
+    .route('/:id')
+    .get(validate({ params: validateId }), getCountryById)
+    .put(
+        validate({ params: validateId, body: validatePopulationAndCapital }),
+        updateCountry,
+    );
 
 export { countriesRouter };

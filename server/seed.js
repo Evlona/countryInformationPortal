@@ -34,9 +34,18 @@ const seedDB = async (data, client) => {
 };
 
 (async () => {
-    const json = await getJson();
-    const data = await parseJsonData(json);
-    const client = await connectDB();
-    await seedDB(data, client);
-    console.info('Database seeded');
+    try {
+        if (!process.env.MONGODB_URI) {
+            throw Error(
+                'Most load env or provide MONGODB_URI file example: node --env-file=.env seed.js ',
+            );
+        }
+        const json = await getJson();
+        const data = await parseJsonData(json);
+        const client = await connectDB();
+        await seedDB(data, client);
+        console.info('Database seeded');
+    } catch (err) {
+        console.error(err.message);
+    }
 })();
